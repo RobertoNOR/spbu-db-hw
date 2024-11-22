@@ -87,22 +87,23 @@ END;
 
 -- Примеры фильтрации
 -- 1. Отображает отличников на курсе "Машинное обучение"
-SELECT student_id, grade, grade_str FROM ml_course WHERE grade_str = 'A';
+SELECT student_id, grade, grade_str FROM ml_course WHERE grade_str = 'A' LIMIT 5;
 
 -- 2. Отображает всех студентов из 2 группы, 1 курса магистратуры ИИиНОД
 SELECT first_name, last_name FROM students
 JOIN groups ON students.group_id = groups.id
-WHERE groups.short_name = '24.М81-мм';
+WHERE groups.short_name = '24.М81-мм'
+LIMIT 5;
 
 -- 3. Отображает всех Александров в списке студентов
-SELECT id AS student_id, first_name, last_name FROM students WHERE first_name LIKE 'Александр%';
+SELECT id AS student_id, first_name, last_name FROM students WHERE first_name LIKE 'Александр%' LIMIT 4;
 
 -- Примеры агрегации
 -- 1. Отображает среднюю оценку на курсе "Машинное обучение"
-SELECT AVG(grade) AS avg_grade FROM ml_course;
+SELECT AVG(grade) AS avg_grade FROM ml_course LIMIT 1;
 
 -- 2. Отображает максимальную оценку на курсе "Машинное обучение"
-SELECT student_id, grade AS max_grade FROM ml_course WHERE grade = (SELECT MAX(grade) FROM ml_course);
+SELECT student_id, grade AS max_grade FROM ml_course WHERE grade = (SELECT MAX(grade) FROM ml_course) LIMIT 1;
 
 -- 3. Минимальную оценку на курсе "Машинное обучение"
-SELECT student_id, grade AS min_grade FROM ml_course WHERE grade = (SELECT MIN(grade) FROM ml_course);
+SELECT student_id, grade AS min_grade FROM ml_course WHERE grade = (SELECT MIN(grade) FROM ml_course) LIMIT 1;

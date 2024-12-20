@@ -112,3 +112,4 @@ SELECT reg_date, COUNT(*) AS total_appointments
 FROM registration
 GROUP BY reg_date
 ORDER BY total_appointments DESC
+LIMIT 2;
